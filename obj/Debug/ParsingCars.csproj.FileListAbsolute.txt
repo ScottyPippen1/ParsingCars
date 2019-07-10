@@ -1,0 +1,16 @@
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\ParsingCars.exe.config
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\ParsingCars.exe
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\ParsingCars.pdb
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.csprojAssemblyReference.cache
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\MainWindow.g.cs
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\App.g.cs
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars_MarkupCompile.cache
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars_MarkupCompile.lref
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\MainWindow.baml
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.g.resources
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.Properties.Resources.resources
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.csproj.GenerateResource.cache
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.csproj.CoreCompileInputs.cache
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.exe
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.pdb
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\cars.xml
