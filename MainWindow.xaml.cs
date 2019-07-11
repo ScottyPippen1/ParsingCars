@@ -24,32 +24,66 @@ namespace ParsingCars
         public MainWindow()
         {
             InitializeComponent();
+            LoadMakes();
         }
 
-        private void Button_Click(object sender, EventArgs e)
+        private void LoadMakes()
         {
-            if(searchInput.Text != null)
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load("cars.xml");
+            XmlDocument doc = new XmlDocument();
+            doc.Load("cars.xml");
 
-                foreach(XmlNode node in doc.DocumentElement)
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string MakeName = node.Attributes[0].Value;
+                dropDownList.Items.Add(MakeName);
+            }
+        }
+
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("cars.xml");
+
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string MakeName = node.Attributes[0].InnerText;
+                if (MakeName == dropDownList.Text)
                 {
-                    string name = node.Attributes[0].InnerText;
-                    if(name == searchInput.Text)
+                    //clears list
+                    searchResults.Items.Clear();
+                    //adds models of selected make to list
+                    foreach (XmlNode child in node.ChildNodes)
                     {
-                        foreach(XmlNode child in node.ChildNodes)
-                        {
-                            searchResults.Items.Add(child.InnerText);
-                        }
+                        searchResults.Items.Add(child.InnerText);
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Invalid Input");
-            }
         }
+
+        /*  private void Button_Click(object sender, EventArgs e)
+          {
+              if(searchInput.Text != null)
+              {
+                  XmlDocument doc = new XmlDocument();
+                  doc.Load("cars.xml");
+
+                  foreach(XmlNode node in doc.DocumentElement)
+                  {
+                      string name = node.Attributes[0].InnerText;
+                      if(name == searchInput.Text)
+                      {
+                          foreach(XmlNode child in node.ChildNodes)
+                          {
+                              searchResults.Items.Add(child.InnerText);
+                          }
+                      }
+                  }
+              }
+              else
+              {
+                  MessageBox.Show("Invalid Input");
+              }
+          }*/
 
     }
 }
