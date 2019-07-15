@@ -5,19 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParsingCars"
         mc:Ignorable="d"
-        Title="Cars" Height="350" Width="400">
-    <Grid>
-        <ComboBox x:Name="dropDownList" HorizontalAlignment="Left" Margin="97,41,0,0" VerticalAlignment="Top" Width="120" IsEditable="True"/>
-        <Button x:Name="buttonOk" Content="Ok" HorizontalAlignment="Left" Margin="225,41,0,0" VerticalAlignment="Top" Width="75" Click="ButtonOk_Click"/>
-        <ListView x:Name="searchResults" HorizontalAlignment="Left" Height="207" Margin="97,102,0,0" VerticalAlignment="Top" Width="203">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Label Content="Make" HorizontalAlignment="Left" Margin="105,15,0,0" VerticalAlignment="Top"/>
-        <Label Content="Model" HorizontalAlignment="Left" Margin="178,75,0,0" VerticalAlignment="Top"/>
+        Title="Cars" Height="215" Width="325" MinHeight="215" MinWidth="325" ResizeMode="CanResize">
+    <Grid Margin="10,10,10,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="dropDownList" HorizontalAlignment="Stretch" Margin="0,40,0,0" VerticalAlignment="Top" Width="120" Grid.Row="0" Grid.Column="0" IsEditable="True"/>
+        <Button x:Name="buttonOk" Content="Ok" HorizontalAlignment="Center" Margin="210,40,0,0" VerticalAlignment="Top" Width="75" Grid.Row="0" Grid.Column="0" Click="ButtonOk_Click"/>
+        <Label Content="Model" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
+        <ListBox x:Name="searchResults" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0">
+
+        </ListBox>
+        <Label Content="Make" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
 
 
 
