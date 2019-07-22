@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Cars>
+	<Model ModelName="A4">
+	<Engine>2.0 L 4-cylinder</Engine>
+	<MPG>Up to 27 city / 34 highway</MPG>
+	</Model>
+	<Model ModelName="A5">
+	<Engine>2.0 L 4-cylinder</Engine>
+	<MPG>Up to 23 city / 34 highway</MPG>
+	</Model>
+	<Model ModelName="S4">
+	<Engine>3.0 L V6</Engine>
+	<MPG>Up to 21 city / 30 highway</MPG>
+	</Model>	
+</Cars>

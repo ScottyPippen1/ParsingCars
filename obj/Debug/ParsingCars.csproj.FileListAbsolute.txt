@@ -14,3 +14,6 @@ C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.csproj
 C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.exe
 C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\ParsingCars.pdb
 C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\cars.xml
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\audi.xml
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\bmw.xml
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\honda.xml

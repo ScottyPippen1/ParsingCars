@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using System.IO;
 
 namespace ParsingCars
 {
@@ -41,9 +42,11 @@ namespace ParsingCars
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
+            //loads xml file
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
 
+            //parses through xml file elements
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string MakeName = node.Attributes[0].InnerText;
@@ -60,30 +63,59 @@ namespace ParsingCars
             }
         }
 
-        /*  private void Button_Click(object sender, EventArgs e)
-          {
-              if(searchInput.Text != null)
-              {
-                  XmlDocument doc = new XmlDocument();
-                  doc.Load("cars.xml");
+        private void searchResults_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //loads xml file
+            XmlDocument doc = new XmlDocument();
+            XmlDocument doc1 = new XmlDocument();
+            XmlDocument doc2 = new XmlDocument();
+            doc.Load("audi.xml");
+            doc1.Load("bmw.xml");
+            doc2.Load("honda.xml");
 
-                  foreach(XmlNode node in doc.DocumentElement)
-                  {
-                      string name = node.Attributes[0].InnerText;
-                      if(name == searchInput.Text)
-                      {
-                          foreach(XmlNode child in node.ChildNodes)
-                          {
-                              searchResults.Items.Add(child.InnerText);
-                          }
-                      }
-                  }
-              }
-              else
-              {
-                  MessageBox.Show("Invalid Input");
-              }
-          }*/
-
+            //parses through xml file elements
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string ModelName = node.Attributes[0].InnerText;
+                if (ModelName == searchResults.SelectedItem.ToString())
+                {
+                    //clears list
+                    modelDetails.Items.Clear();
+                    //adds details for selected model
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        modelDetails.Items.Add(child.InnerText);
+                    }
+                }
+            }
+            foreach (XmlNode node in doc1.DocumentElement)
+            {
+                string ModelName = node.Attributes[0].InnerText;
+                if (ModelName == searchResults.SelectedItem.ToString())
+                {
+                    //clears list
+                    modelDetails.Items.Clear();
+                    //adds details for selected model
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        modelDetails.Items.Add(child.InnerText);
+                    }
+                }
+            }
+            foreach (XmlNode node in doc2.DocumentElement)
+            {
+                string ModelName = node.Attributes[0].InnerText;
+                if (ModelName == searchResults.SelectedItem.ToString())
+                {
+                    //clears list
+                    modelDetails.Items.Clear();
+                    //adds details for selected model
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        modelDetails.Items.Add(child.InnerText);
+                    }
+                }
+            }
+        }
     }
 }

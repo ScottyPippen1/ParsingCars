@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Cars>
+	<Model ModelName="325I">
+	<Engine>3.0 L 6-cylinder</Engine>
+	<MPG>Up to 21 city / 29 highway</MPG>
+	</Model>
+	<Model ModelName="325XI">
+	<Engine>2.5 L 6-cylinder</Engine>
+	<MPG>Up to 17 city / 25 highway</MPG>
+	</Model>
+	<Model ModelName="745I">
+	<Engine>4.4 L V8</Engine>
+	<MPG>Up to 18 city / 26 highway</MPG>
+	</Model>
+	<Model ModelName="Z3">
+	<Engine>3.0 L 6-cylinder</Engine>
+	<MPG>Up to 21 city / 28 highway</MPG>
+	</Model>
+</Cars>
