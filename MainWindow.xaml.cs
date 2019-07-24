@@ -40,6 +40,23 @@ namespace ParsingCars
             }
         }
 
+        private void Search_XML(XmlDocument count)
+        {
+            foreach (XmlNode node in count.DocumentElement)
+            {
+                string ModelName = node.Attributes[0].InnerText;
+                if (ModelName == searchResults.SelectedItem.ToString())
+                {
+                    //clears list
+                    modelDetails.Items.Clear();
+                    //adds details for selected model
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        modelDetails.Items.Add(child.InnerText);
+                    }
+                }
+            }
+        }
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             //loads xml file
@@ -66,56 +83,20 @@ namespace ParsingCars
         private void searchResults_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
             //loads xml file
-            XmlDocument doc = new XmlDocument();
             XmlDocument doc1 = new XmlDocument();
             XmlDocument doc2 = new XmlDocument();
-            doc.Load("audi.xml");
-            doc1.Load("bmw.xml");
-            doc2.Load("honda.xml");
-
-            //parses through xml file elements
-            foreach (XmlNode node in doc.DocumentElement)
+            XmlDocument doc3 = new XmlDocument();
+            doc1.Load("audi.xml");
+            doc2.Load("bmw.xml");
+            doc3.Load("acura.xml");
+            //checks if searchResults is empty
+            if (searchResults.Items.Count == 0)
             {
-                string ModelName = node.Attributes[0].InnerText;
-                if (ModelName == searchResults.SelectedItem.ToString())
-                {
-                    //clears list
-                    modelDetails.Items.Clear();
-                    //adds details for selected model
-                    foreach (XmlNode child in node.ChildNodes)
-                    {
-                        modelDetails.Items.Add(child.InnerText);
-                    }
-                }
+                return;
             }
-            foreach (XmlNode node in doc1.DocumentElement)
-            {
-                string ModelName = node.Attributes[0].InnerText;
-                if (ModelName == searchResults.SelectedItem.ToString())
-                {
-                    //clears list
-                    modelDetails.Items.Clear();
-                    //adds details for selected model
-                    foreach (XmlNode child in node.ChildNodes)
-                    {
-                        modelDetails.Items.Add(child.InnerText);
-                    }
-                }
-            }
-            foreach (XmlNode node in doc2.DocumentElement)
-            {
-                string ModelName = node.Attributes[0].InnerText;
-                if (ModelName == searchResults.SelectedItem.ToString())
-                {
-                    //clears list
-                    modelDetails.Items.Clear();
-                    //adds details for selected model
-                    foreach (XmlNode child in node.ChildNodes)
-                    {
-                        modelDetails.Items.Add(child.InnerText);
-                    }
-                }
-            }
+            Search_XML(doc1);
+            Search_XML(doc2);
+            Search_XML(doc3);
         }
     }
 }
