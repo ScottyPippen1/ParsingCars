@@ -94,9 +94,15 @@ namespace ParsingCars
             {
                 return;
             }
+            //calls xml file when model selected
             Search_XML(doc1);
             Search_XML(doc2);
             Search_XML(doc3);
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
