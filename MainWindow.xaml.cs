@@ -100,9 +100,12 @@ namespace ParsingCars
             Search_XML(doc3);
         }
 
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        private void addVehicle_Click(object sender, RoutedEventArgs e)
         {
-
+            //opens new wpf to add info to xml files
+            Window2 objWindow2 = new Window2();
+            this.Visibility = Visibility.Hidden;
+            objWindow2.Show();
         }
     }
 }

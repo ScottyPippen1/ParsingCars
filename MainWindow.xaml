@@ -18,7 +18,7 @@
         <ToolBar VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2">
             <Menu>
                 <MenuItem Header="Edit">
-                    <MenuItem Header="Add Vehicle"/>
+                    <MenuItem Header="Add Vehicle" Click="addVehicle_Click"/>
                 </MenuItem>
             </Menu>
         </ToolBar>
