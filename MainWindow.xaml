@@ -32,7 +32,7 @@
         </ListBox>
         <Label Content="Engine: " HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
         <Label Content="MPG: " HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
-        <Label Content="Make" HorizontalAlignment="Center" Margin="104,30,104,0" VerticalAlignment="Top"/>
+        <Label Content="Make" HorizontalAlignment="Center" Margin="95,30,95,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

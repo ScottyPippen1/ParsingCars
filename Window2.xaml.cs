@@ -24,15 +24,16 @@ namespace ParsingCars
         {
             InitializeComponent();
         }
-
+        
         private bool VehicleExists(XmlDocument exists)
         {
-            
+            //checks if input already exists in xml file
             foreach (XmlNode node in exists.DocumentElement)
             {
                 string ModelName = node.Attributes[0].InnerText;
                 if (ModelName == modelTextbox.Text)
                 {
+                    MessageBox.Show("Entry already exists");
                     return true;
                 }
 
@@ -55,25 +56,27 @@ namespace ParsingCars
             VehicleExists(doc2);
             VehicleExists(doc3);
 
+            //declared flag variables
             bool flag1 = VehicleExists(doc1);
             bool flag2 = VehicleExists(doc2);
             bool flag3 = VehicleExists(doc3);
 
-            if (flag1 == false)
+            
+            if (flag1 == true)
             {
                 return;
             }
-            if (flag2 == false)
+            if (flag2 == true)
             {
                 return;
             }
-            if (flag3 == false)
+            if (flag3 == true)
             {
                 return;
             }
 
+            //adds and saves new make and model to xml file
             string makeName = makeTextbox.Text;
-
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
             XmlNode make = doc.CreateElement("Make");
@@ -86,8 +89,8 @@ namespace ParsingCars
             doc.DocumentElement.AppendChild(make.Clone());
             doc.Save("cars.xml");
 
-            MainWindow objMainWindow = new MainWindow();
             //hides main window displays second window
+            MainWindow objMainWindow = new MainWindow();
             this.Visibility = Visibility.Hidden;
             objMainWindow.Show();
         }
