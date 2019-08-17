@@ -58,12 +58,11 @@ namespace ParsingCars
             }
         }
         
-        private bool VehicleExists(XmlDocument exists)
+        private bool VehicleExists(XmlDocument doc1)
         {
-            XmlDocument doc1 = new XmlDocument();
             LoadMakeXML(doc1);
             //checks if input already exists in xml file
-            foreach (XmlNode node in exists.DocumentElement)
+            foreach (XmlNode node in doc1.DocumentElement)
             {
                 string ModelName = node.Attributes[0].InnerText;
                 if (ModelName == modelTextbox.Text)
