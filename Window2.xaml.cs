@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Configuration;
 
 namespace ParsingCars
 {
@@ -23,10 +24,44 @@ namespace ParsingCars
         public Window2()
         {
             InitializeComponent();
+            LoadMakes();
+        }
+
+        private void LoadMakes()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("cars.xml");
+
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string MakeName = node.Attributes[0].Value;
+                makeComboBox.Items.Add(MakeName);
+            }
+        }
+        private void LoadMakeXML(XmlDocument doc1)
+        {
+            
+            string audi = "Audi";
+            string bmw = "BMW";
+            string acura = "acura";
+            if(makeComboBox.Text == audi)
+            {
+                doc1.Load("audi.xml");
+            }
+            else if(makeComboBox.Text == bmw)
+            {
+                doc1.Load("bmw.xml");
+            }
+            else if(makeComboBox.Text == acura)
+            {
+                doc1.Load("acura.xml");
+            }
         }
         
         private bool VehicleExists(XmlDocument exists)
         {
+            XmlDocument doc1 = new XmlDocument();
+            LoadMakeXML(doc1);
             //checks if input already exists in xml file
             foreach (XmlNode node in exists.DocumentElement)
             {
@@ -43,40 +78,18 @@ namespace ParsingCars
 
         private void AddVehicleButton_Click(object sender, RoutedEventArgs e)
         {
-            //loads xml file
+
             XmlDocument doc1 = new XmlDocument();
-            XmlDocument doc2 = new XmlDocument();
-            XmlDocument doc3 = new XmlDocument();
-            doc1.Load("audi.xml");
-            doc2.Load("bmw.xml");
-            doc3.Load("acura.xml");
-
-            //calls xml file when model selected
-            VehicleExists(doc1);
-            VehicleExists(doc2);
-            VehicleExists(doc3);
-
             //declared flag variables
             bool flag1 = VehicleExists(doc1);
-            bool flag2 = VehicleExists(doc2);
-            bool flag3 = VehicleExists(doc3);
-
             
             if (flag1 == true)
             {
                 return;
             }
-            if (flag2 == true)
-            {
-                return;
-            }
-            if (flag3 == true)
-            {
-                return;
-            }
-
+        
             //adds and saves new make and model to xml file
-            string makeName = makeTextbox.Text;
+            string makeName = makeComboBox.Text;
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
             XmlNode make = doc.CreateElement("Make");
@@ -86,8 +99,10 @@ namespace ParsingCars
             make.Attributes.Append(newAttribute);
             model.InnerText = modelTextbox.Text;
             make.AppendChild(model);
-            doc.DocumentElement.AppendChild(make.Clone());
+            doc.DocumentElement.AppendChild(make);
             doc.Save("cars.xml");
+            doc.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
+            
 
             //hides main window displays second window
             MainWindow objMainWindow = new MainWindow();
