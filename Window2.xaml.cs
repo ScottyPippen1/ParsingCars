@@ -43,7 +43,7 @@ namespace ParsingCars
             
             string audi = "Audi";
             string bmw = "BMW";
-            string acura = "acura";
+            string acura = "Acura";
             if(makeComboBox.Text == audi)
             {
                 doc1.Load("audi.xml");
@@ -75,10 +75,44 @@ namespace ParsingCars
             return false;
         }
 
+        //adds and saves new make and model to xml file
+        private void AddModelUnderExistingMake()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("cars.xml");
+            string audi = "Audi";
+            string bmw = "BMW";
+            string acura = "Acura";
+            if(makeComboBox.Text == audi)
+            {
+                XmlNode xmakename = doc.SelectSingleNode(@"/Cars/Make[@MakeName='Audi']");
+                XmlNode xmodel = doc.CreateElement("Model");
+                xmodel.InnerText = modelTextbox.Text;
+                xmakename.AppendChild(xmodel);
+            }
+            else if(makeComboBox.Text == bmw)
+            {
+                XmlNode xmakename = doc.SelectSingleNode(@"/Cars/Make[@MakeName='BMW']");
+                XmlNode xmodel = doc.CreateElement("Model");
+                xmodel.InnerText = modelTextbox.Text;
+                xmakename.AppendChild(xmodel);
+            }
+            else if(makeComboBox.Text == acura)
+            {
+                XmlNode xmakename = doc.SelectSingleNode(@"/Cars/Make[@MakeName='Acura']");
+                XmlNode xmodel = doc.CreateElement("Model");
+                xmodel.InnerText = modelTextbox.Text;
+                xmakename.AppendChild(xmodel);
+            }
+            doc.Save("cars.xml");
+            doc.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
+        }
+
         private void AddVehicleButton_Click(object sender, RoutedEventArgs e)
         {
 
             XmlDocument doc1 = new XmlDocument();
+            LoadMakeXML(doc1);
             //declared flag variables
             bool flag1 = VehicleExists(doc1);
             
@@ -86,22 +120,8 @@ namespace ParsingCars
             {
                 return;
             }
-        
-            //adds and saves new make and model to xml file
-            string makeName = makeComboBox.Text;
-            XmlDocument doc = new XmlDocument();
-            doc.Load("cars.xml");
-            XmlNode make = doc.CreateElement("Make");
-            XmlAttribute newAttribute = doc.CreateAttribute("MakeName");
-            XmlNode model = doc.CreateElement("Model");
-            newAttribute.Value = makeName;
-            make.Attributes.Append(newAttribute);
-            model.InnerText = modelTextbox.Text;
-            make.AppendChild(model);
-            doc.DocumentElement.AppendChild(make);
-            doc.Save("cars.xml");
-            doc.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
-            
+
+            AddModelUnderExistingMake();
 
             //hides main window displays second window
             MainWindow objMainWindow = new MainWindow();
