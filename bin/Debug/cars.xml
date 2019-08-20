@@ -9,14 +9,12 @@
     <Model>A4</Model>
     <Model>A5</Model>
     <Model>S4</Model>
-    <Model>555</Model>
   </Make>
   <Make MakeName="BMW">
     <Model>325I</Model>
     <Model>325XI</Model>
     <Model>745I</Model>
     <Model>Z3</Model>
-    <Model>ggggggggg</Model>
   </Make>
   <Make MakeName="Dodge">
     <Model>Caliber</Model>

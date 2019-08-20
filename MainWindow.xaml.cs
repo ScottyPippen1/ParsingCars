@@ -107,5 +107,13 @@ namespace ParsingCars
             this.Visibility = Visibility.Hidden;
             objWindow2.Show();
         }
+
+        private void removeVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            //opens new wpf to remove info from xml files
+            Window3 objWindow3 = new Window3();
+            this.Visibility = Visibility.Hidden;
+            objWindow3.Show();
+        }
     }
 }

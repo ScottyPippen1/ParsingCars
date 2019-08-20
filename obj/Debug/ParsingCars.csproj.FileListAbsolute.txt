@@ -19,3 +19,5 @@ C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\bmw.xml
 C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\bin\Debug\acura.xml
 C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\Window2.g.cs
 C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\Window2.baml
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\Window3.g.cs
+C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\obj\Debug\Window3.baml

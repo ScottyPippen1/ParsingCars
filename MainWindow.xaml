@@ -19,6 +19,7 @@
             <Menu>
                 <MenuItem Header="Edit">
                     <MenuItem Header="Add Vehicle" Click="addVehicle_Click"/>
+                    <MenuItem Header="Remove Vehicle" Click="removeVehicle_Click"/>
                 </MenuItem>
             </Menu>
         </ToolBar>

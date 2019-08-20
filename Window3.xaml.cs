@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
-using System.Configuration;
 
 namespace ParsingCars
 {
     /// <summary>
-    /// Interaction logic for Window2.xaml
+    /// Interaction logic for Window3.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class Window3 : Window
     {
-        public Window2()
+        public Window3()
         {
             InitializeComponent();
             LoadMakes();
@@ -38,90 +37,88 @@ namespace ParsingCars
                 makeComboBox.Items.Add(MakeName);
             }
         }
+
         private void LoadMakeXML(XmlDocument doc1)
         {
-            
+
             string audi = "Audi";
             string bmw = "BMW";
             string acura = "Acura";
-            if(makeComboBox.Text == audi)
+            if (makeComboBox.Text == audi)
             {
                 doc1.Load("audi.xml");
             }
-            else if(makeComboBox.Text == bmw)
+            else if (makeComboBox.Text == bmw)
             {
                 doc1.Load("bmw.xml");
             }
-            else if(makeComboBox.Text == acura)
+            else if (makeComboBox.Text == acura)
             {
                 doc1.Load("acura.xml");
             }
         }
-        
-        private bool VehicleExists(XmlDocument doc1)
+
+     /*   private bool VehicleDoesNotExist(XmlDocument doc1)
         {
             LoadMakeXML(doc1);
-            //checks if input already exists in xml file
+            //checks if input exists in xml file
             foreach (XmlNode node in doc1.DocumentElement)
             {
                 string ModelName = node.Attributes[0].InnerText;
-                if (ModelName == modelTextbox.Text)
+                if (ModelName != modelTextbox.Text)
                 {
-                    MessageBox.Show("Entry already exists");
+                    MessageBox.Show("Entry does not exist");
                     return true;
                 }
 
             }
             return false;
-        }
+        }*/
 
-        //adds and saves new make and model to xml file
-        private void AddModelUnderExistingMake()
+        private void RemoveModelUnderExistingMake()
         {
+            //loads xml file
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
-            string audi = "Audi";
-            string bmw = "BMW";
-            string acura = "Acura";
-            if(makeComboBox.Text == audi)
+
+            bool flag = false;
+
+            //parses through xml file elements
+            foreach (XmlNode node in doc.SelectNodes("//Make/Model"))
             {
-                XmlNode xmakename = doc.SelectSingleNode(@"/Cars/Make[@MakeName='Audi']");
-                XmlNode xmodel = doc.CreateElement("Model");
-                xmodel.InnerText = modelTextbox.Text;
-                xmakename.AppendChild(xmodel);
+                if (node.InnerText == modelTextbox.Text)
+                {
+                    node.ParentNode.RemoveChild(node);
+                    flag = true;
+                    break;
+                }  
             }
-            else if(makeComboBox.Text == bmw)
+            if(flag == false)
             {
-                XmlNode xmakename = doc.SelectSingleNode(@"/Cars/Make[@MakeName='BMW']");
-                XmlNode xmodel = doc.CreateElement("Model");
-                xmodel.InnerText = modelTextbox.Text;
-                xmakename.AppendChild(xmodel);
-            }
-            else if(makeComboBox.Text == acura)
-            {
-                XmlNode xmakename = doc.SelectSingleNode(@"/Cars/Make[@MakeName='Acura']");
-                XmlNode xmodel = doc.CreateElement("Model");
-                xmodel.InnerText = modelTextbox.Text;
-                xmakename.AppendChild(xmodel);
+                MessageBox.Show("Model does not exist");
             }
             doc.Save("cars.xml");
             doc.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
         }
-
-        private void AddVehicleButton_Click(object sender, RoutedEventArgs e)
+        private void RemoveVehicleButton_Click(object sender, RoutedEventArgs e)
         {
             XmlDocument doc1 = new XmlDocument();
             LoadMakeXML(doc1);
             //declared flag variables
-            bool flag1 = VehicleExists(doc1);
-            
+         /*   bool flag1 = VehicleDoesNotExist(doc1);
+
             if (flag1 == true)
             {
                 return;
-            }
-            AddModelUnderExistingMake();
+            }*/
 
-            //hides main window displays second window
+            RemoveModelUnderExistingMake();
+
+
+
+
+
+            //hides remove vehicle window displays main window
             MainWindow objMainWindow = new MainWindow();
             this.Visibility = Visibility.Hidden;
             objMainWindow.Show();
