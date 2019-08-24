@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.IO;
+using System.Xml.Linq;
 
 namespace ParsingCars
 {
@@ -26,6 +27,22 @@ namespace ParsingCars
         {
             InitializeComponent();
             LoadMakes();
+        }
+
+        private void XMLAlphaNumeric()
+        {
+            XElement xelement = XElement.Load("cars.xml");
+            IEnumerable<string> models = from model in xelement.Elements("Make")
+                                          let xmodel = (string)model.Element("Model")
+                                          orderby xmodel
+                                          select xmodel;
+            
+            foreach(string xmodel in models)
+            {
+                xelement.Add(xmodel);
+            }
+            xelement.Save("cars.xml");
+            xelement.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
         }
 
         private void LoadMakes()
@@ -62,7 +79,7 @@ namespace ParsingCars
             //loads xml file
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
-
+            XMLAlphaNumeric();
             //parses through xml file elements
             foreach (XmlNode node in doc.DocumentElement)
             {

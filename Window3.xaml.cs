@@ -38,49 +38,13 @@ namespace ParsingCars
             }
         }
 
-        private void LoadMakeXML(XmlDocument doc1)
-        {
-
-            string audi = "Audi";
-            string bmw = "BMW";
-            string acura = "Acura";
-            if (makeComboBox.Text == audi)
-            {
-                doc1.Load("audi.xml");
-            }
-            else if (makeComboBox.Text == bmw)
-            {
-                doc1.Load("bmw.xml");
-            }
-            else if (makeComboBox.Text == acura)
-            {
-                doc1.Load("acura.xml");
-            }
-        }
-
-     /*   private bool VehicleDoesNotExist(XmlDocument doc1)
-        {
-            LoadMakeXML(doc1);
-            //checks if input exists in xml file
-            foreach (XmlNode node in doc1.DocumentElement)
-            {
-                string ModelName = node.Attributes[0].InnerText;
-                if (ModelName != modelTextbox.Text)
-                {
-                    MessageBox.Show("Entry does not exist");
-                    return true;
-                }
-
-            }
-            return false;
-        }*/
-
         private void RemoveModelUnderExistingMake()
         {
             //loads xml file
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
 
+            //check to break out of loop
             bool flag = false;
 
             //parses through xml file elements
@@ -102,21 +66,7 @@ namespace ParsingCars
         }
         private void RemoveVehicleButton_Click(object sender, RoutedEventArgs e)
         {
-            XmlDocument doc1 = new XmlDocument();
-            LoadMakeXML(doc1);
-            //declared flag variables
-         /*   bool flag1 = VehicleDoesNotExist(doc1);
-
-            if (flag1 == true)
-            {
-                return;
-            }*/
-
             RemoveModelUnderExistingMake();
-
-
-
-
 
             //hides remove vehicle window displays main window
             MainWindow objMainWindow = new MainWindow();
