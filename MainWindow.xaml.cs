@@ -31,18 +31,14 @@ namespace ParsingCars
 
         private void XMLAlphaNumeric()
         {
-            XElement xelement = XElement.Load("cars.xml");
-            IEnumerable<string> models = from model in xelement.Elements("Make")
-                                          let xmodel = (string)model.Element("Model")
-                                          orderby xmodel
-                                          select xmodel;
-            
-            foreach(string xmodel in models)
+            string[] modelarr = XDocument.Load("cars.xml").Descendants("MakeName").Select(element => element.Value).ToArray();
+            IEnumerable<string> query = from model in modelarr
+                                         orderby model
+                                         select model;
+            foreach(string str in query)
             {
-                xelement.Add(xmodel);
+                searchResults.Items.Add(str);
             }
-            xelement.Save("cars.xml");
-            xelement.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
         }
 
         private void LoadMakes()
@@ -79,7 +75,7 @@ namespace ParsingCars
             //loads xml file
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
-            XMLAlphaNumeric();
+            
             //parses through xml file elements
             foreach (XmlNode node in doc.DocumentElement)
             {
@@ -91,6 +87,7 @@ namespace ParsingCars
                     //adds models of selected make to list
                     foreach (XmlNode child in node.ChildNodes)
                     {
+                        XMLAlphaNumeric();
                         searchResults.Items.Add(child.InnerText);
                     }
                 }
