@@ -25,7 +25,6 @@ namespace ParsingCars
             InitializeComponent();
             LoadMakes();
         }
-
         private void LoadMakes()
         {
             XmlDocument doc = new XmlDocument();
@@ -37,7 +36,6 @@ namespace ParsingCars
                 makeComboBox.Items.Add(MakeName);
             }
         }
-
         private void RemoveModelUnderExistingMake()
         {
             //loads xml file

@@ -26,7 +26,6 @@ namespace ParsingCars
             InitializeComponent();
             LoadMakes();
         }
-
         private void LoadMakes()
         {
             XmlDocument doc = new XmlDocument();
@@ -39,8 +38,7 @@ namespace ParsingCars
             }
         }
         private void LoadMakeXML(XmlDocument doc1)
-        {
-            
+        {         
             string audi = "Audi";
             string bmw = "BMW";
             string acura = "Acura";
@@ -56,8 +54,7 @@ namespace ParsingCars
             {
                 doc1.Load("acura.xml");
             }
-        }
-        
+        }     
         private bool VehicleExists(XmlDocument doc1)
         {
             LoadMakeXML(doc1);
@@ -70,11 +67,9 @@ namespace ParsingCars
                     MessageBox.Show("Entry already exists");
                     return true;
                 }
-
             }
             return false;
         }
-
         //adds and saves new make and model to xml file
         private void AddModelUnderExistingMake()
         {
@@ -107,20 +102,17 @@ namespace ParsingCars
             doc.Save("cars.xml");
             doc.Save(@"C:\Users\ZackF\source\repos\ParsingCars\ParsingCars\cars.xml");
         }
-
         private void AddVehicleButton_Click(object sender, RoutedEventArgs e)
         {
             XmlDocument doc1 = new XmlDocument();
             LoadMakeXML(doc1);
             //declared flag variables
-            bool flag1 = VehicleExists(doc1);
-            
+            bool flag1 = VehicleExists(doc1);          
             if (flag1 == true)
             {
                 return;
             }
             AddModelUnderExistingMake();
-
             //hides main window displays second window
             MainWindow objMainWindow = new MainWindow();
             this.Visibility = Visibility.Hidden;

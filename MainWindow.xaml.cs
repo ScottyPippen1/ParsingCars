@@ -28,31 +28,16 @@ namespace ParsingCars
             InitializeComponent();
             LoadMakes();
         }
-
-        private void XMLAlphaNumeric()
-        {
-            string[] modelarr = XDocument.Load("cars.xml").Descendants("MakeName").Select(element => element.Value).ToArray();
-            IEnumerable<string> query = from model in modelarr
-                                         orderby model
-                                         select model;
-            foreach(string str in query)
-            {
-                searchResults.Items.Add(str);
-            }
-        }
-
         private void LoadMakes()
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
-
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string MakeName = node.Attributes[0].Value;
                 dropDownList.Items.Add(MakeName);
             }
         }
-
         private void Search_XML(XmlDocument count)
         {
             foreach (XmlNode node in count.DocumentElement)
@@ -75,7 +60,7 @@ namespace ParsingCars
             //loads xml file
             XmlDocument doc = new XmlDocument();
             doc.Load("cars.xml");
-            
+            List<string> modelarr = new List<string>();
             //parses through xml file elements
             foreach (XmlNode node in doc.DocumentElement)
             {
@@ -87,13 +72,16 @@ namespace ParsingCars
                     //adds models of selected make to list
                     foreach (XmlNode child in node.ChildNodes)
                     {
-                        XMLAlphaNumeric();
-                        searchResults.Items.Add(child.InnerText);
+                        modelarr.Add(child.InnerText);
+                    }
+                    modelarr.Sort();
+                    foreach (var child in modelarr)
+                    {
+                        searchResults.Items.Add(child);
                     }
                 }
             }
         }
-
         private void searchResults_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
             //loads xml file
@@ -113,7 +101,6 @@ namespace ParsingCars
             Search_XML(doc2);
             Search_XML(doc3);
         }
-
         private void addVehicle_Click(object sender, RoutedEventArgs e)
         {
             //opens new wpf to add info to xml files
@@ -121,7 +108,6 @@ namespace ParsingCars
             this.Visibility = Visibility.Hidden;
             objWindow2.Show();
         }
-
         private void removeVehicle_Click(object sender, RoutedEventArgs e)
         {
             //opens new wpf to remove info from xml files
